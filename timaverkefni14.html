@@ -15,6 +15,32 @@
         // TODO:
         // Ná í gögning og birta nöfn ásamt netföngum
         // https://jsonplaceholder.typicode.com/users
+
+             fetch("https://jsonplaceholder.typicode.com/users").then(response => 
+               { if (!response.ok) {
+                throw new Error("Network response was not ok")
+               }
+               return response.json()
+                }
+            ).then(users => {
+                // Prenta í console til að sjá uppsetninguna á gögnum
+                console.log("users", users)
+
+                const userList = document.getElementById("user-list")
+                users.forEach(user => {
+                    const li = document.createElement("li")
+                    li.textContent = user.name
+                    userList.appendChild(li)
+                    
+                })
+
+                
+                
+            }).catch(error => {
+                // Ef urlið er rangt þá mun response.ok ekki vera til og það mun fara í catch 
+                // því við erum að fá throw error, það sem kemur inn í throw error birtist í console í inspect
+                console.error("VILLA", error)
+            })
       </script>
     </section>
     <section>
